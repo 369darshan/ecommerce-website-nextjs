@@ -6,10 +6,10 @@ import { Button } from './ui/button';
 import { ShoppingBag } from 'lucide-react';
 
 const links = [
-  { name: "Home", href: "/Men" },
-  { name: "Home", href: "/Men" },
-  { name: "Home", href: "/Men" },
-  { name: "Home", href: "/Men" },
+  { name: "Home", href: "/" },
+  { name: "Men", href: "/Men" },
+  { name: "Women", href: "/Women" },
+  { name: "Teens", href: "/Teens" },
 
 ]
 
@@ -19,7 +19,7 @@ const Navbar = () => {
     <header className='mb-8 border-b'>
       <div className='flex items-center justify-between mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl'>
         <Link href="/">
-          <h1 className='text-4xl font-bold'>
+          <h1 className='text-2xl md:text-4xl font-bold'>
             Next <span className='text-primary'>Commernce</span>
           </h1>
         </Link>
