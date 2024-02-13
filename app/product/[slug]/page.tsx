@@ -3,7 +3,7 @@ import React from 'react'
 import { fullProduct } from '../../interface';
 import ImageGallery from '@/components/ImageGallery';
 import { Button } from '@/components/ui/button';
-import { Star } from 'lucide-react';
+import { Star, TruckIcon } from 'lucide-react';
 
 const getData = async (slug: string) => {
   const query = `*[_type== "product" && slug.current == "${slug}"][0]{
@@ -46,7 +46,19 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
 
                 <span className='mb-0.5 text-red-800 line-through'>${data.price + 20}</span>
               </div>
+              <span className='text-sm text-gray-500'>
+                Incl. Vat plus shipping
+              </span>
             </div>
+            <div className='mb-6 flex items-center gap-2 text-gray-500'>
+              <TruckIcon />
+              <span className='text-sm'>2-4 Day Shipping</span>
+            </div>
+            <div className='flex gap-2.5'>
+              <Button>Add To Bag</Button>
+              <Button variant={'outline'}>Checkout now</Button>
+            </div>
+            <p className='mt-12 text-base text-gray-500 tracking-wider'>{data.description}</p>
           </div>
         </div>
       </div>
