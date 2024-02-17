@@ -1,9 +1,9 @@
 "use client"
-import Link from 'next/link'
-import { usePathname } from 'next/navigation';
-import React from 'react';
-import { Button } from './ui/button';
 import { ShoppingBag } from 'lucide-react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { useShoppingCart } from 'use-shopping-cart';
+import { Button } from './ui/button';
 
 const links = [
   { name: "Home", href: "/" },
@@ -14,7 +14,8 @@ const links = [
 ]
 
 const Navbar = () => {
-  const pathname = usePathname()
+  const pathname = usePathname();
+  const { handleCartClick } = useShoppingCart();
   return (
     <header className='mb-8 border-b'>
       <div className='flex items-center justify-between mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl'>
@@ -37,7 +38,11 @@ const Navbar = () => {
           ))}
         </nav>
         <div className='flex divide-x border-r sm:border-l'>
-          <Button variant={"outline"} className='flex flex-col gap-y-1.5 h-12 w-12 sm:h-20 md:h-24 md:w-24 rounded-none'>
+          <Button
+            variant={"outline"}
+            onClick={() => handleCartClick()}
+            className='flex flex-col gap-y-1.5 h-12 w-12 sm:h-20 md:h-24 md:w-24 rounded-none'
+          >
             <ShoppingBag />
             <span className='hidden text-xs font-semibold text-gray-500 sm:block'>Cart</span>
           </Button>

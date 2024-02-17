@@ -1,9 +1,9 @@
-import { client } from '@/lib/sanity';
-import React from 'react'
-import { fullProduct } from '../../interface';
+import AddToBag from '@/components/AddToBag';
 import ImageGallery from '@/components/ImageGallery';
 import { Button } from '@/components/ui/button';
+import { client } from '@/lib/sanity';
 import { Star, TruckIcon } from 'lucide-react';
+import { fullProduct } from '../../interface';
 
 const getData = async (slug: string) => {
   const query = `*[_type== "product" && slug.current == "${slug}"][0]{
@@ -55,7 +55,7 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
               <span className='text-sm'>2-4 Day Shipping</span>
             </div>
             <div className='flex gap-2.5'>
-              <Button>Add To Bag</Button>
+              <AddToBag currency='USD' description={data.description} image={data.images[0]} name={data.name} price={data.price}/>
               <Button variant={'outline'}>Checkout now</Button>
             </div>
             <p className='mt-12 text-base text-gray-500 tracking-wider'>{data.description}</p>
