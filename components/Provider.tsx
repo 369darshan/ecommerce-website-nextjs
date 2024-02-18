@@ -11,7 +11,7 @@ const CartProvider = ({ children }: { children: ReactNode }) => {
       successUrl='http://localhost:3000/stripe/success'
       cancelUrl='http://localhost:3000/stripe/error'
       currency='USD'
-      billingAddressCollection={true}
+      billingAddressCollection={false}
       shouldPersist={true}
       language='en-us'
     >
