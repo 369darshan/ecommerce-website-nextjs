@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { client } from '@/lib/sanity';
 import { Star, TruckIcon } from 'lucide-react';
 import { fullProduct } from '../../interface';
+import CheckOutNow from '@/components/CheckOutNow';
 
 const getData = async (slug: string) => {
   const query = `*[_type== "product" && slug.current == "${slug}"][0]{
@@ -14,6 +15,7 @@ const getData = async (slug: string) => {
     description,
     "slug": slug.current,
     "categoryName":category->name,
+    price_id
   }`;
   const data = await client.fetch(query)
   return data;
@@ -55,8 +57,16 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
               <span className='text-sm'>2-4 Day Shipping</span>
             </div>
             <div className='flex gap-2.5'>
-              <AddToBag currency='USD' description={data.description} image={data.images[0]} name={data.name} price={data.price}/>
+              <AddToBag
+                currency='USD'
+                description={data.description}
+                image={data.images[0]}
+                name={data.name}
+                price={data.price}
+                price_id={data.price_id}
+              />
               <Button variant={'outline'}>Checkout now</Button>
+              {/* <CheckOutNow name={data.name} description={data.description}image={data.images}price={data.price}price_id={data.price_id}/> */}
             </div>
             <p className='mt-12 text-base text-gray-500 tracking-wider'>{data.description}</p>
           </div>
