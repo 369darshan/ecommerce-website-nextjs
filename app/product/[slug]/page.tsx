@@ -1,10 +1,10 @@
 import AddToBag from '@/components/AddToBag';
+import CheckOutNow from '@/components/CheckOutNow';
 import ImageGallery from '@/components/ImageGallery';
 import { Button } from '@/components/ui/button';
 import { client } from '@/lib/sanity';
 import { Star, TruckIcon } from 'lucide-react';
 import { fullProduct } from '../../interface';
-import CheckOutNow from '@/components/CheckOutNow';
 
 const getData = async (slug: string) => {
   const query = `*[_type== "product" && slug.current == "${slug}"][0]{
@@ -20,6 +20,8 @@ const getData = async (slug: string) => {
   const data = await client.fetch(query)
   return data;
 }
+
+export const dynamic = "force-dynamic";
 
 const ProductPage = async ({ params }: { params: { slug: string } }) => {
   const data: fullProduct = await getData(params.slug)
@@ -65,8 +67,14 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
                 price={data.price}
                 price_id={data.price_id}
               />
-              <Button variant={'outline'}>Checkout now</Button>
-              {/* <CheckOutNow name={data.name} description={data.description}image={data.images}price={data.price}price_id={data.price_id}/> */}
+              {/* <Button variant={'outline'}>Checkout now</Button> */}
+              <CheckOutNow
+                currency='USD'
+                description={data.description}
+                image={data.images[0]}
+                name={data.name}
+                price={data.price}
+                price_id={data.price_id} />
             </div>
             <p className='mt-12 text-base text-gray-500 tracking-wider'>{data.description}</p>
           </div>

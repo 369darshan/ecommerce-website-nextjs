@@ -1,8 +1,8 @@
 'use client'
 import { urlFor } from '@/lib/sanity';
 import { useShoppingCart } from 'use-shopping-cart';
-import { Button } from './ui/button';
 import { ProductCart } from './AddToBag';
+import { Button } from './ui/button';
 
 
 const CheckOutNow = ({ currency, description, image, name, price, price_id }: ProductCart) => {
@@ -20,6 +20,7 @@ const CheckOutNow = ({ currency, description, image, name, price, price_id }: Pr
   }
   return (
     <Button
+      variant={'outline'}
       onClick={() => {
         buyNow(price_id)
       }}
